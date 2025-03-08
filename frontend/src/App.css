@@ -1,0 +1,156 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 24px;
+  background-color: #f5f5f5;
+}
+
+/* ダッシュボード */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.dashboard-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card-header {
+  padding: 16px;
+  background-color: #4caf50;
+  color: white;
+}
+
+.dashboard-card-content {
+  padding: 16px;
+}
+
+/* 分析ページ */
+.analysis-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.analysis-header {
+  margin-bottom: 24px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+}
+
+.analysis-section {
+  margin-bottom: 32px;
+}
+
+.analysis-chart-container {
+  height: 400px;
+  margin-bottom: 24px;
+}
+
+/* データアップロードページ */
+.upload-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.upload-dropzone {
+  border: 2px dashed #4caf50;
+  border-radius: 8px;
+  padding: 48px;
+  margin-bottom: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-dropzone:hover {
+  background-color: #e8f5e9;
+}
+
+.upload-dropzone-active {
+  background-color: #e8f5e9;
+  border-color: #2e7d32;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .analysis-chart-container {
+    height: 300px;
+  }
+  
+  .upload-dropzone {
+    padding: 24px;
+  }
+}
+
+/* アニメーション */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* スクロールバーのカスタマイズ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4caf50;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #388e3c;
+}
