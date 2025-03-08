@@ -42,18 +42,35 @@ class BabyLogAnalyzer:
             data_dir: データディレクトリのパス
         """
         try:
+            # イベントデータの読み込み
             self.events_df = pd.read_csv(
                 os.path.join(data_dir, 'events.csv'),
                 parse_dates=['date', 'datetime']
             )
+            
+            # 日次サマリーデータの読み込み
             self.daily_summary_df = pd.read_csv(
                 os.path.join(data_dir, 'daily_summary.csv'),
                 parse_dates=['date']
             )
-            self.growth_df = pd.read_csv(
-                os.path.join(data_dir, 'growth.csv'),
-                parse_dates=['date', 'datetime']
-            )
+            
+            # 成長データの読み込み
+            growth_file = os.path.join(data_dir, 'growth.csv')
+            if os.path.getsize(growth_file) > 10:  # ファイルサイズが十分にある場合のみ読み込む
+                self.growth_df = pd.read_csv(
+                    growth_file,
+                    parse_dates=['date', 'datetime']
+                )
+            else:
+                # 空のDataFrameを作成（必要な列を含む）
+                self.growth_df = pd.DataFrame(columns=[
+                    'date', 'datetime', 'type', 'value', 'unit', 
+                    'baby_name', 'age_years', 'age_months', 'age_days'
+                ])
+                # 日付列をdatetime型に変換
+                self.growth_df['date'] = pd.to_datetime(self.growth_df['date'])
+                self.growth_df['datetime'] = pd.to_datetime(self.growth_df['datetime'])
+            
             print("データ読み込み完了")
         except Exception as e:
             print(f"データ読み込みエラー: {e}")

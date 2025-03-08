@@ -127,8 +127,20 @@ class BabyLogParser:
         
         for time_str, event_type, event_detail in event_matches:
             # 時間の解析
-            time_obj = datetime.strptime(time_str, '%H:%M').time()
-            event_datetime = datetime.combine(date_obj.date(), time_obj)
+            try:
+                # 標準的な時間形式（00:00-23:59）の場合
+                time_obj = datetime.strptime(time_str, '%H:%M').time()
+                event_datetime = datetime.combine(date_obj.date(), time_obj)
+            except ValueError:
+                # 24時間を超える時間形式（例：26:00）の場合
+                hour, minute = map(int, time_str.split(':'))
+                # 日付の調整（24時間以上は翌日として扱う）
+                days_to_add = hour // 24
+                adjusted_hour = hour % 24
+                adjusted_time_str = f"{adjusted_hour:02d}:{minute:02d}"
+                time_obj = datetime.strptime(adjusted_time_str, '%H:%M').time()
+                adjusted_date = date_obj + timedelta(days=days_to_add)
+                event_datetime = datetime.combine(adjusted_date.date(), time_obj)
             
             # イベントタイプと詳細の解析
             event_type = event_type.strip()

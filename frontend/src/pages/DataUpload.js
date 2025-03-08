@@ -91,7 +91,7 @@ const DataUpload = () => {
   const renderStepOne = () => (
     <Box sx={{ mt: 4 }}>
       <Typography variant="body1" paragraph>
-        分析するデータファイルのパスを入力してください。デフォルトでは「input/【ぴよログ】2024年2月.txt」が使用されます。
+        分析するデータファイルのパスを入力してください。デフォルトでは「input/piyolog_202402.txt」が使用されます。
       </Typography>
       <TextField
         fullWidth
@@ -99,7 +99,7 @@ const DataUpload = () => {
         variant="outlined"
         value={filePath}
         onChange={handleFilePathChange}
-        placeholder="input/【ぴよログ】2024年2月.txt"
+        placeholder="input/piyolog_202402.txt"
         helperText="空白の場合はデフォルトのファイルが使用されます"
         sx={{ mb: 3 }}
       />

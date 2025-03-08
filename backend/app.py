@@ -31,7 +31,7 @@ CORS(app)  # CORS対応
 # 設定
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 INPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'input')
-DEFAULT_LOG_FILE = os.path.join(INPUT_DIR, '【ぴよログ】2024年2月.txt')
+DEFAULT_LOG_FILE = os.path.join(INPUT_DIR, 'piyolog_202402.txt')
 
 # データディレクトリの確保
 ensure_directory(DATA_DIR)
